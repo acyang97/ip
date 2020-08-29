@@ -6,7 +6,7 @@ public class Duke {
 
     public static void printTaskList() {
         for (int i = 0; i < indexOfLatestTask; i++) {
-            System.out.println(listOfTasks[i]);
+            System.out.println(Integer.toString(i + 1) + "." + listOfTasks[i]);
         }
     }
 

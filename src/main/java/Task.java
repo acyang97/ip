@@ -34,9 +34,9 @@ public class Task {
     @Override
     public String toString() {
         if (this.isDone) {
-            return this.indexOfTask + ".[Y] " + this.text;
+            return "[Y] " + this.text;
         } else {
-            return this.indexOfTask + ".[N] " + this.text;
+            return "[N] " + this.text;
         }
     }
 }

@@ -30,13 +30,4 @@ public class Task {
     public boolean equals(String otherText) {
         return this.text.equals(otherText);
     }
-
-    @Override
-    public String toString() {
-        if (this.isDone) {
-            return "[Y] " + this.text;
-        } else {
-            return "[N] " + this.text;
-        }
-    }
 }

@@ -5,4 +5,17 @@ public class Deadline extends Task {
         super(text);
         this.deadline = deadline;
     }
+
+    public String formatDeadLine() {
+        String firstWord = deadline.split(" ")[0];
+        return "(" + firstWord + ":" + deadline.substring(firstWord.length()) + ")";
+    }
+
+    public String toString() {
+        if (super.getIsDone()) {
+            return "[D][Y] " + super.getText() + " " + this.formatDeadLine();
+        } else {
+            return "[D][N] " + super.getText() + " " + this.formatDeadLine();
+        }
+    }
 }

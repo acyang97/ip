@@ -20,16 +20,27 @@ public class Duke {
         System.out.println(taskToBeMarkedAsDone);
     }
 
+    public static String[] splitTask(String commandMethod, String nextCommand) {
+        nextCommand = nextCommand.substring(commandMethod.length());
+        String[] splitTaskIntoTextAndDate = nextCommand.split(" /");
+        return splitTaskIntoTextAndDate;
+    }
+
     public static void addTask(String commandMethod, String nextCommand) {
         System.out.println("Got it. I've added this task:");
-        // there are three possible command methods,
-        // todo
+        Task taskToBeAdded = null;
         if (commandMethod.equals("todo")) {
-            Todo todo = new Todo(nextCommand.substring(4, nextCommand.length()));
-
+            taskToBeAdded = new Todo(nextCommand.substring(commandMethod.length()));
+        } else if (commandMethod.equals("deadline")) {
+            String[] splitTask = splitTask(commandMethod, nextCommand);
+            taskToBeAdded = new Deadline(splitTask[0], splitTask[1]);
+        } else {
+            String[] splitTask = splitTask(commandMethod, nextCommand);
+            taskToBeAdded = new Event(splitTask[0], splitTask[1]);
         }
-        // deadline
-        // event
+        System.out.println(taskToBeAdded);
+        listOfTasks[indexOfLatestTask++] = taskToBeAdded;
+        System.out.println(String.format("Now you have %d tasks in the list.", indexOfLatestTask));
     }
 
     public static void main(String[] args) {
@@ -44,10 +55,8 @@ public class Duke {
                 printTaskList();
             } else if (commandMethod.equals("done")) {
                 markTaskAsDone(nextCommand);
-            } else { // now there are 3 seperate classes
-                Task nextTask = new Task(nextCommand);
-                System.out.println("added: " + nextTask.getText());
-                listOfTasks[indexOfLatestTask++] = nextTask;
+            } else {
+                addTask(commandMethod, nextCommand);
             }
             nextCommand = sc.nextLine();
             commandMethod = nextCommand.split(" ")[0];

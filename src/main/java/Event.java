@@ -13,9 +13,9 @@ public class Event extends Task {
 
     public String toString() {
         if (super.getIsDone()) {
-            return "[D][Y] " + super.getText() + " " + this.formatEvent();
+            return "[E][Y] " + super.getText() + " " + this.formatEvent();
         } else {
-            return "[D][N] " + super.getText() + " " + this.formatEvent();
+            return "[E][N] " + super.getText() + " " + this.formatEvent();
         }
     }
 

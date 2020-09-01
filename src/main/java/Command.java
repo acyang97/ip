@@ -1,13 +1,13 @@
 public abstract class Command {
-    private String command;
+    protected String command;
 
     public Command(String command) {
         this.command = command;
     }
 
-    public String getCommand() {
+    protected String getCommand() {
         return command;
     }
 
-    public abstract void performCommand(TaskManager taskManager);
+    protected abstract void performCommand(TaskManager taskManager);
 }

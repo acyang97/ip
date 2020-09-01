@@ -1,8 +1,8 @@
 public class Task {
-    private int indexOfTask;
-    private String text;
-    private boolean isDone;
-    private static int TASK_COUNTER = 1;
+    protected int indexOfTask;
+    protected String text;
+    protected boolean isDone;
+    protected static int TASK_COUNTER = 1;
 
     public Task(String text) {
         this.indexOfTask = TASK_COUNTER;
@@ -11,23 +11,15 @@ public class Task {
         TASK_COUNTER++;
     }
 
-    public void setDone() {
+    protected void setDone() {
         this.isDone = true;
     }
 
-    public int getIndexOfTask() {
-        return this.indexOfTask;
-    }
-
-    public String getText() {
+    protected String getText() {
         return this.text;
     }
 
-    public boolean getIsDone() {
+    protected boolean getIsDone() {
         return this.isDone;
-    }
-
-    public boolean equals(String otherText) {
-        return this.text.equals(otherText);
     }
 }

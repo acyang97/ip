@@ -6,7 +6,7 @@ public class DoneCommand extends Command {
         this.indexOfTaskToBeMarkedAsDone = indexOfTaskToBeMarkedAsDone;
     }
 
-    public void performTask(TaskManager taskManager) {
+    public void performCommand(TaskManager taskManager) {
         taskManager.markTaskAsDone(indexOfTaskToBeMarkedAsDone);
     }
 

@@ -9,5 +9,5 @@ public abstract class Command {
         return command;
     }
 
-    protected abstract void performTask(TaskManager taskManager);
+    protected abstract void performCommand(TaskManager taskManager);
 }

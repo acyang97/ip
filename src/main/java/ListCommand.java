@@ -3,7 +3,7 @@ public class ListCommand extends Command{
         super(lineInput);
     }
 
-    public void performCommand(TaskManager taskManager) {
+    public void performTask(TaskManager taskManager) {
         taskManager.printAllTasks();
     }
 }

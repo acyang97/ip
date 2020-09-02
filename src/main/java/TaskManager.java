@@ -31,7 +31,7 @@ public class TaskManager {
 
     public void addTask(String commandMethod, String nextCommand) {
         System.out.println("Got it. I've added this task:");
-        Task taskToBeAdded = null;
+        Task taskToBeAdded;
         if (commandMethod.equals("todo")) {
             taskToBeAdded = new Todo(nextCommand.substring(commandMethod.length()));
         } else if (commandMethod.equals("deadline")) {
@@ -50,7 +50,7 @@ public class TaskManager {
         Task taskToBeMarkedAsDone = this.listOfTasks[indexOfTask - 1];
         taskToBeMarkedAsDone.setDone();
         this.listOfTasks[indexOfTask - 1] = taskToBeMarkedAsDone;
-        System.out.println("Nice! I've marked this task as done: ");
+        System.out.println("Nice! I've marked this task as done:");
         System.out.println(taskToBeMarkedAsDone);
     }
 }

@@ -3,7 +3,7 @@ public class ByeCommand extends Command {
         super(lineInput);
     }
 
-    public void performCommand(TaskManager taskManager) {
+    public void performTask(TaskManager taskManager) {
         taskManager.setTaskManagerSaysBye();
         System.out.println("Bye. Hope to see you again!");
     }

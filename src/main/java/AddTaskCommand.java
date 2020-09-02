@@ -6,7 +6,7 @@ public class AddTaskCommand extends Command {
         this.commandMethod = commandMethod;
     }
 
-    public void performCommand(TaskManager taskManager) {
+    public void performTask(TaskManager taskManager) {
         taskManager.addTask(this.commandMethod, super.getCommand());
     }
 }

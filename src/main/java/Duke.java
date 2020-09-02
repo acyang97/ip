@@ -11,13 +11,13 @@ public class Duke {
         Command command = lineParser.getTypeOfCommand();
 
         while (!taskManager.getTaskManagerSaysBye()) {
-            command.performCommand(taskManager);
+            command.performTask(taskManager);
             nextLine = sc.nextLine();
             lineParser = new LineParser(nextLine);
             command = lineParser.getTypeOfCommand();
         }
 
-        command.performCommand(taskManager);
+        command.performTask(taskManager);
         sc.close();
     }
 }

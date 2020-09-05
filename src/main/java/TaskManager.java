@@ -29,7 +29,10 @@ public class TaskManager {
         return splitTaskIntoTextAndDate;
     }
 
-    public void addTask(String commandMethod, String nextCommand) {
+    public void addTask(String commandMethod, String nextCommand) throws DukeException {
+        if (commandMethod.length() == nextCommand.length()) {
+            throw new DukeException("OOPS!!! The description of a " + commandMethod + " cannot be empty.");
+        }
         System.out.println("Got it. I've added this task:");
         Task taskToBeAdded;
         if (commandMethod.equals("todo")) {
@@ -46,7 +49,10 @@ public class TaskManager {
         System.out.println(String.format("Now you have %d tasks in the list.", indexOfLatestTask));
     }
 
-    public void markTaskAsDone(int indexOfTask) {
+    public void markTaskAsDone(int indexOfTask) throws DukeException {
+        if (indexOfTask - 1 > indexOfLatestTask) {
+            throw new DukeException("Total number of task is less than " + indexOfTask);
+        }
         Task taskToBeMarkedAsDone = this.listOfTasks[indexOfTask - 1];
         taskToBeMarkedAsDone.setDone();
         this.listOfTasks[indexOfTask - 1] = taskToBeMarkedAsDone;

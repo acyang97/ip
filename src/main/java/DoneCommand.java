@@ -7,7 +7,11 @@ public class DoneCommand extends Command {
     }
 
     public void performCommand(TaskManager taskManager) {
-        taskManager.markTaskAsDone(indexOfTaskToBeMarkedAsDone);
+        try {
+            taskManager.markTaskAsDone(indexOfTaskToBeMarkedAsDone);
+        } catch (DukeException e) {
+            e.printStackTrace();
+        }
     }
 
 }

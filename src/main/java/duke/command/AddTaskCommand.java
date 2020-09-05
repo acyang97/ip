@@ -1,3 +1,8 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.TaskManager;
+
 public class AddTaskCommand extends Command {
     private String commandMethod;
 

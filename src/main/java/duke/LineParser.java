@@ -1,3 +1,7 @@
+package duke;
+
+import duke.command.*;
+
 public class LineParser {
     private String lineInput;
 
@@ -17,7 +21,7 @@ public class LineParser {
             int indexInInteger = Integer.parseInt(indexOfTaskToBeMarkAsDone);
             command = new DoneCommand(this.lineInput, indexInInteger);
         //} else if (lineInput.split(" ").length == 1)
-        //     throw new DukeException(":( OOPS!!! The description of a todo cannot be empty");
+        //     throw new duke.DukeException(":( OOPS!!! The description of a todo cannot be empty");
         } else if (checkAddCommand(commandMethod)) {
             command = new AddTaskCommand(this.lineInput, commandMethod);
         } else {

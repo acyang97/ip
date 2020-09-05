@@ -1,3 +1,7 @@
+package duke.command;
+
+import duke.TaskManager;
+
 public abstract class Command {
     protected String command;
 
@@ -9,5 +13,5 @@ public abstract class Command {
         return command;
     }
 
-    protected abstract void performCommand(TaskManager taskManager);
+    public abstract void performCommand(TaskManager taskManager);
 }

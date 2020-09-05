@@ -1,3 +1,5 @@
+package duke.task;
+
 public class Task {
     protected int indexOfTask;
     protected String text;
@@ -11,7 +13,7 @@ public class Task {
         TASK_COUNTER++;
     }
 
-    protected void setDone() {
+    public void setDone() {
         this.isDone = true;
     }
 

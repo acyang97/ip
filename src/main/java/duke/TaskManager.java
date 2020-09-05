@@ -1,3 +1,10 @@
+package duke;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+
 public class TaskManager {
     private Task[] listOfTasks;
     private int indexOfLatestTask;
@@ -50,7 +57,7 @@ public class TaskManager {
     }
 
     public void markTaskAsDone(int indexOfTask) throws DukeException {
-        if (indexOfTask - 1 > indexOfLatestTask) {
+        if (indexOfTask > indexOfLatestTask) {
             throw new DukeException("Total number of task is less than " + indexOfTask);
         }
         Task taskToBeMarkedAsDone = this.listOfTasks[indexOfTask - 1];

@@ -1,5 +1,5 @@
 public class TaskManager {
-    public Task[] listOfTasks;
+    private Task[] listOfTasks;
     private int indexOfLatestTask;
     private boolean taskManagerSaysBye;
 

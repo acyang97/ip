@@ -13,9 +13,9 @@ public class Deadline extends Task {
 
     public String toString() {
         if (super.getIsDone()) {
-            return "[D][Y] " + super.getText() + " " + this.formatDeadLine();
+            return "[D][Y]" + super.getText() + " " + this.formatDeadLine();
         } else {
-            return "[D][N] " + super.getText() + " " + this.formatDeadLine();
+            return "[D][N]" + super.getText() + " " + this.formatDeadLine();
         }
     }
 }

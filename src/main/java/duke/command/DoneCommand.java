@@ -15,7 +15,7 @@ public class DoneCommand extends Command {
         try {
             taskManager.markTaskAsDone(indexOfTaskToBeMarkedAsDone);
         } catch (DukeException e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
     }
 

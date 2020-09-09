@@ -15,7 +15,7 @@ public class AddTaskCommand extends Command {
         try {
             taskManager.addTask(this.commandMethod, super.getCommand());
         } catch (DukeException e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
     }
 }

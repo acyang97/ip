@@ -8,23 +8,24 @@ import duke.task.Todo;
 public class TaskManager {
     private Task[] listOfTasks;
     private int indexOfLatestTask;
-    private boolean taskManagerSaysBye;
+    private boolean taskManagerSaidBye;
 
     public TaskManager() {
         this.listOfTasks = new Task[100];
         this.indexOfLatestTask = 0;
-        this.taskManagerSaysBye = false;
+        this.taskManagerSaidBye = false;
     }
 
-    public void setTaskManagerSaysBye() {
-        this.taskManagerSaysBye = true;
+    public void setTaskManagerSaidBye() {
+        this.taskManagerSaidBye = true;
     }
 
-    public boolean getTaskManagerSaysBye() {
-        return this.taskManagerSaysBye;
+    public boolean getTaskManagerSaidBye() {
+        return this.taskManagerSaidBye;
     }
 
     public void printAllTasks() {
+        System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < this.indexOfLatestTask; i++) {
             System.out.println((i + 1) + "." + this.listOfTasks[i]);
         }

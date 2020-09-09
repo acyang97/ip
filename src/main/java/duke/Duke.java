@@ -15,13 +15,15 @@ public class Duke {
             LineParser lineParser = new LineParser(nextLine);
             Command command = lineParser.getTypeOfCommand();
 
-            while (!taskManager.getTaskManagerSaysBye()) {
+            while (true) {
                 command.performCommand(taskManager);
+                if (taskManager.getTaskManagerSaidBye()) {
+                    break;
+                }
                 nextLine = sc.nextLine();
                 lineParser = new LineParser(nextLine);
                 command = lineParser.getTypeOfCommand();
             }
-            command.performCommand(taskManager);
         } catch (DukeException e) {
             System.out.println(e);
         }

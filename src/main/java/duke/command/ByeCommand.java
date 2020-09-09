@@ -8,7 +8,7 @@ public class ByeCommand extends Command {
     }
 
     public void performCommand(TaskManager taskManager) {
-        taskManager.setTaskManagerSaysBye();
+        taskManager.setTaskManagerSaidBye();
         System.out.println("Bye. Hope to see you again!");
     }
 }

@@ -20,8 +20,6 @@ public class LineParser {
             String indexOfTaskToBeMarkAsDone = lineInput.split(" ")[1];
             int indexInInteger = Integer.parseInt(indexOfTaskToBeMarkAsDone);
             command = new DoneCommand(this.lineInput, indexInInteger);
-        //} else if (lineInput.split(" ").length == 1)
-        //     throw new duke.DukeException(":( OOPS!!! The description of a todo cannot be empty");
         } else if (checkAddCommand(commandMethod)) {
             command = new AddTaskCommand(this.lineInput, commandMethod);
         } else {

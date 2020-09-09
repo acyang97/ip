@@ -5,14 +5,15 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TaskManager {
-    private Task[] listOfTasks;
-    private int indexOfLatestTask;
+    private List<Task> listOfTasks;
     private boolean taskManagerSaidBye;
 
     public TaskManager() {
-        this.listOfTasks = new Task[100];
-        this.indexOfLatestTask = 0;
+        this.listOfTasks = new ArrayList<>();
         this.taskManagerSaidBye = false;
     }
 
@@ -24,10 +25,14 @@ public class TaskManager {
         return this.taskManagerSaidBye;
     }
 
+    public int getSizeOfList() {
+        return this.listOfTasks.size();
+    }
+
     public void printAllTasks() {
         System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < this.indexOfLatestTask; i++) {
-            System.out.println((i + 1) + "." + this.listOfTasks[i]);
+        for (int i = 0; i < this.getSizeOfList(); i++) {
+            System.out.println((i + 1) + "." + this.listOfTasks.get(i));
         }
     }
 
@@ -53,17 +58,18 @@ public class TaskManager {
             taskToBeAdded = new Event(splitTask[0], splitTask[1]);
         }
         System.out.println(taskToBeAdded);
-        this.listOfTasks[indexOfLatestTask++] = taskToBeAdded;
-        System.out.println(String.format("Now you have %d tasks in the list.", indexOfLatestTask));
+        this.listOfTasks.add(taskToBeAdded);
+        System.out.println(String.format("Now you have %d tasks in the list.", this.getSizeOfList()));
     }
 
     public void markTaskAsDone(int indexOfTask) throws DukeException {
-        if (indexOfTask > indexOfLatestTask) {
+        if (indexOfTask > this.getSizeOfList()) {
             throw new DukeException("Total number of task is less than " + indexOfTask);
         }
-        Task taskToBeMarkedAsDone = this.listOfTasks[indexOfTask - 1];
+
+        Task taskToBeMarkedAsDone = this.listOfTasks.get(indexOfTask - 1);
         taskToBeMarkedAsDone.setDone();
-        this.listOfTasks[indexOfTask - 1] = taskToBeMarkedAsDone;
+        this.listOfTasks.set(indexOfTask - 1, taskToBeMarkedAsDone);
         System.out.println("Nice! I've marked this task as done:");
         System.out.println(taskToBeMarkedAsDone);
     }

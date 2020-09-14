@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.Storage;
 import duke.TaskManager;
 
 public abstract class Command {
@@ -13,5 +14,5 @@ public abstract class Command {
         return command;
     }
 
-    public abstract void performCommand(TaskManager taskManager);
+    public abstract void performCommand(TaskManager taskManager, Storage storage);
 }

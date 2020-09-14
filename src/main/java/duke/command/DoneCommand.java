@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.DukeException;
+import duke.Storage;
 import duke.TaskManager;
 
 public class DoneCommand extends Command {
@@ -11,7 +12,7 @@ public class DoneCommand extends Command {
         this.indexOfTaskToBeMarkedAsDone = indexOfTaskToBeMarkedAsDone;
     }
 
-    public void performCommand(TaskManager taskManager) {
+    public void performCommand(TaskManager taskManager, Storage storage) {
         try {
             taskManager.markTaskAsDone(indexOfTaskToBeMarkedAsDone);
         } catch (DukeException e) {

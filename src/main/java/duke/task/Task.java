@@ -1,16 +1,17 @@
 package duke.task;
 
 public class Task {
-    protected int indexOfTask;
     protected String text;
     protected boolean isDone;
-    protected static int TASK_COUNTER = 1;
 
     public Task(String text) {
-        this.indexOfTask = TASK_COUNTER;
         this.text = text;
         this.isDone = false;
-        TASK_COUNTER++;
+    }
+
+    public Task(String text, boolean isDone) {
+        this.text = text;
+        this.isDone = isDone;
     }
 
     public void setDone() {
@@ -23,5 +24,9 @@ public class Task {
 
     protected boolean getIsDone() {
         return this.isDone;
+    }
+
+    public String formatLine() {
+        return  "";
     }
 }

@@ -20,6 +20,10 @@ public class LineParser {
             String indexOfTaskToBeMarkAsDone = lineInput.split(" ")[1];
             int indexInInteger = Integer.parseInt(indexOfTaskToBeMarkAsDone);
             command = new DoneCommand(this.lineInput, indexInInteger);
+        } else if (commandMethod.equals("delete")) {
+            String indexOfTaskToDeleted = lineInput.split(" ")[1];
+            int indexInInteger = Integer.parseInt(indexOfTaskToDeleted);
+            command = new DeleteCommand(this.lineInput, indexInInteger);
         } else if (checkAddCommand(commandMethod)) {
             command = new AddTaskCommand(this.lineInput, commandMethod);
         } else {
@@ -29,9 +33,6 @@ public class LineParser {
     }
 
     private boolean checkAddCommand(String command) {
-        if (command.equals("todo") || command.equals("event") || command.equals("deadline")) {
-            return true;
-        }
-        return false;
+        return command.equals("todo") || command.equals("event") || command.equals("deadline");
     }
 }

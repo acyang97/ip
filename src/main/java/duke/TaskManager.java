@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class TaskManager {
@@ -117,7 +118,6 @@ public class TaskManager {
 
     public void addTasksToTaskManagerFromFile(File file) {
         try {
-            //File file = new File(filePath);
             Scanner sc = new Scanner(file);
             sc.nextLine();
             while (sc.hasNextLine()) {
@@ -128,7 +128,8 @@ public class TaskManager {
             sc.close();
         } catch (FileNotFoundException e) {
             System.out.println("File does not exist");
-            e.printStackTrace();
+        } catch (NoSuchElementException e) {
+            System.out.println("There are no tasks in your list");
         }
     }
 }

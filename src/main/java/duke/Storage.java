@@ -42,6 +42,7 @@ public class Storage {
         try {
             File file = new File(filePath);
             Scanner sc = new Scanner(file);
+            System.out.println("Here are your list of tasks:");
             while (sc.hasNextLine()) {
                 String data = sc.nextLine();
                 System.out.println(data);

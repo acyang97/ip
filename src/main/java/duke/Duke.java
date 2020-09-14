@@ -19,7 +19,6 @@ public class Duke {
         System.out.println("What can I do for you?");
 
         if (file.exists()) {
-            System.out.println("Here are your list of tasks:");
             storage.listTasks();
             taskManager.addTasksToTaskManagerFromFile(file);
         }

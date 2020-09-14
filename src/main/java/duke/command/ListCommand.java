@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.Storage;
 import duke.TaskManager;
 
 public class ListCommand extends Command{
@@ -7,7 +8,7 @@ public class ListCommand extends Command{
         super(lineInput);
     }
 
-    public void performCommand(TaskManager taskManager) {
+    public void performCommand(TaskManager taskManager, Storage storage) {
         taskManager.printAllTasks();
     }
 }

@@ -8,6 +8,16 @@ public class Event extends Task {
         this.event = event;
     }
 
+    public Event(String text, boolean isDone, String event) {
+        super(text, isDone);
+        this.event = event;
+    }
+
+    public String formatLine() {
+        String done = (super.isDone) ? "1" : "0";
+        return "\nE | " + done + " | " + super.text + " | " + this.event;
+    }
+
     public String formatEvent() {
         String firstWord = event.split(" ")[0];
         return "(" + firstWord + ":" + event.substring(firstWord.length()) + ")";
@@ -15,9 +25,9 @@ public class Event extends Task {
 
     public String toString() {
         if (super.getIsDone()) {
-            return "[E][Y]" + super.getText() + " " + this.formatEvent();
+            return "[E][Y] " + super.getText() + " " + this.formatEvent();
         } else {
-            return "[E][N]" + super.getText() + " " + this.formatEvent();
+            return "[E][N] " + super.getText() + " " + this.formatEvent();
         }
     }
 }

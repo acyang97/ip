@@ -64,13 +64,24 @@ public class TaskManager {
 
     public void markTaskAsDone(int indexOfTask) throws DukeException {
         if (indexOfTask > this.getSizeOfList()) {
-            throw new DukeException("Total number of task is less than " + indexOfTask);
+            throw new DukeException("Total number of tasks is less than " + indexOfTask);
+        } else {
+            Task taskToBeMarkedAsDone = this.listOfTasks.get(indexOfTask - 1);
+            taskToBeMarkedAsDone.setDone();
+            this.listOfTasks.set(indexOfTask - 1, taskToBeMarkedAsDone);
+            System.out.println("Nice! I've marked this task as done:");
+            System.out.println(taskToBeMarkedAsDone);
         }
+    }
 
-        Task taskToBeMarkedAsDone = this.listOfTasks.get(indexOfTask - 1);
-        taskToBeMarkedAsDone.setDone();
-        this.listOfTasks.set(indexOfTask - 1, taskToBeMarkedAsDone);
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(taskToBeMarkedAsDone);
+    public void deleteTask(int indexOfTask) throws DukeException {
+        if (indexOfTask > this.getSizeOfList()) {
+            throw new DukeException("Total number of tasks is less than " + indexOfTask);
+        } else {
+            System.out.println("Noted. I've removed this task:");
+            System.out.println(this.listOfTasks.get(indexOfTask - 1));
+            this.listOfTasks.remove(indexOfTask - 1);
+            System.out.println(String.format("Now you have %d tasks in the list.", this.getSizeOfList()));
+        }
     }
 }

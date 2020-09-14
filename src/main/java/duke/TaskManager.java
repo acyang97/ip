@@ -83,13 +83,15 @@ public class TaskManager {
         }
     }
 
-    public void deleteTask(int indexOfTask) throws DukeException {
+    public void deleteTask(int indexOfTask, Storage storage) throws DukeException, IOException {
         if (indexOfTask > this.getSizeOfList()) {
             throw new DukeException("Total number of tasks is less than " + indexOfTask);
         } else {
             System.out.println("Noted. I've removed this task:");
             System.out.println(this.listOfTasks.get(indexOfTask - 1));
             this.listOfTasks.remove(indexOfTask - 1);
+            storage.emptyFile();
+            storage.addTasks(this);
             System.out.println(String.format("Now you have %d tasks in the list.", this.getSizeOfList()));
         }
     }

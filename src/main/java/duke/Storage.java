@@ -16,6 +16,11 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    public void emptyFile() throws IOException {
+        FileWriter fileWriter = new FileWriter(filePath);
+        fileWriter.close();
+    }
+
     public void addTask(Task task) throws IOException {
         FileWriter fileWriter = new FileWriter(filePath);
         String line = task.formatLine();

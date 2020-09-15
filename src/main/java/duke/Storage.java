@@ -44,12 +44,10 @@ public class Storage {
             Scanner sc = new Scanner(file);
             System.out.println("Here are your list of tasks:");
             while (sc.hasNextLine()) {
-                String data = sc.nextLine();
-                System.out.println(data);
+                System.out.println(sc.nextLine());
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Error occured");
-            e.printStackTrace();
+            System.out.println("File does not exist!");
         }
     }
 }

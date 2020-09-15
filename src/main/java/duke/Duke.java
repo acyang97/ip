@@ -10,10 +10,8 @@ public class Duke {
     public static void main(String[] args) throws IOException {
         String filePath = "taskList.txt";
         File file = new File(filePath);
-
         Scanner sc = new Scanner(System.in);
         TaskManager taskManager = new TaskManager();
-
         Storage storage = new Storage(filePath);
         System.out.println("Hello! I'm duke.Duke");
         System.out.println("What can I do for you?");

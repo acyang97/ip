@@ -35,9 +35,13 @@ public class TaskManager {
     }
 
     public void printAllTasks() {
-        System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < this.getSizeOfList(); i++) {
-            System.out.println((i + 1) + "." + this.listOfTasks.get(i));
+        if (this.listOfTasks.size() == 0) {
+            System.out.println("You don't have any tasks in your list");
+        } else {
+            System.out.println("Here are the tasks in your list:");
+            for (int i = 0; i < this.getSizeOfList(); i++) {
+                System.out.println((i + 1) + "." + this.listOfTasks.get(i));
+            }
         }
     }
 

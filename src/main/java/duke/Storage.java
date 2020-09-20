@@ -9,18 +9,37 @@ import java.util.Scanner;
 import java.util.List;
 import java.io.FileWriter;
 
+/**
+ * A Storage object to deal with saving the tasks into a file.
+ */
 public class Storage {
+    /**
+     * The file path of the desired file to add the list of tasks.
+     */
     private String filePath;
 
+    /**
+     * A constructor for the Storage object.
+     * @param filePath name of the filePath.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Method to empty a txt file.
+     * @throws IOException when filePath is invalid.
+     */
     public void emptyFile() throws IOException {
         FileWriter fileWriter = new FileWriter(filePath);
         fileWriter.close();
     }
 
+    /**
+     * Method to add tasks from the list in the TaskManager object to the file.
+     * @param taskManager that contains the list of tasks.
+     * @throws IOException when the file path does not exist.
+     */
     public void addTasks(TaskManager taskManager) throws IOException {
         FileWriter fileWriter = new FileWriter(filePath);
         List<Task> listOfTasks = taskManager.getListOfTasks();
@@ -31,18 +50,19 @@ public class Storage {
         fileWriter.close();
     }
 
+    /**
+     * method to list the tasks in the file.
+     */
     public void listTasks() {
         try {
             File file = new File(filePath);
             Scanner sc = new Scanner(file);
-            //System.out.println("Here are your list of tasks:");
             Ui.viewTasks();
             while (sc.hasNextLine()) {
                 System.out.println(sc.nextLine());
             }
         } catch (FileNotFoundException e) {
             Ui.printFileNotFound();
-            //System.out.println("File does not exist!");
         }
     }
 }

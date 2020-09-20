@@ -15,7 +15,12 @@ public class Deadline extends Task {
 
     @Override
     public String formatLine() {
-        String done = (super.isDone) ? "1" : "0";
+        String done;
+        if (super.isDone) {
+            done = "1";
+        } else {
+            done = "0";
+        }
         return "\nD | " + done + " | " + super.text + " | " + this.deadline;
     }
 

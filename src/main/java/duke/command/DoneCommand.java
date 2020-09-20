@@ -4,6 +4,8 @@ import duke.DukeException;
 import duke.Storage;
 import duke.TaskManager;
 
+import java.io.IOException;
+
 public class DoneCommand extends Command {
     private int indexOfTaskToBeMarkedAsDone;
 
@@ -14,10 +16,9 @@ public class DoneCommand extends Command {
 
     public void performCommand(TaskManager taskManager, Storage storage) {
         try {
-            taskManager.markTaskAsDone(indexOfTaskToBeMarkedAsDone);
-        } catch (DukeException e) {
+            taskManager.markTaskAsDone(indexOfTaskToBeMarkedAsDone, storage);
+        } catch (DukeException | IOException e) {
             System.out.println(e);
         }
     }
-
 }

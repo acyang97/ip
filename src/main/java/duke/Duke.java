@@ -3,22 +3,22 @@ package duke;
 import duke.command.Command;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Duke {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         String filePath = "taskList.txt";
         File file = new File(filePath);
         Scanner sc = new Scanner(System.in);
         TaskManager taskManager = new TaskManager();
         Storage storage = new Storage(filePath);
-        System.out.println("Hello! I'm duke.Duke");
-        System.out.println("What can I do for you?");
+        Ui ui = new Ui();
+        ui.printGreeting();
 
         if (file.exists()) {
             storage.listTasks();
             taskManager.addTasksToTaskManagerFromFile(file);
+            ui.printLineSeparator();
         }
 
         while (true) {
@@ -33,6 +33,7 @@ public class Duke {
             if (taskManager.getTaskManagerSaidBye()) {
                 break;
             }
+            ui.printLineSeparator();
         }
     }
 }

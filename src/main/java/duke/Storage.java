@@ -21,13 +21,6 @@ public class Storage {
         fileWriter.close();
     }
 
-    public void addTask(Task task) throws IOException {
-        FileWriter fileWriter = new FileWriter(filePath);
-        String line = task.formatLine();
-        fileWriter.write(line);
-        fileWriter.close();
-    }
-
     public void addTasks(TaskManager taskManager) throws IOException {
         FileWriter fileWriter = new FileWriter(filePath);
         List<Task> listOfTasks = taskManager.getListOfTasks();
@@ -42,12 +35,14 @@ public class Storage {
         try {
             File file = new File(filePath);
             Scanner sc = new Scanner(file);
-            System.out.println("Here are your list of tasks:");
+            //System.out.println("Here are your list of tasks:");
+            Ui.viewTasks();
             while (sc.hasNextLine()) {
                 System.out.println(sc.nextLine());
             }
         } catch (FileNotFoundException e) {
-            System.out.println("File does not exist!");
+            Ui.printFileNotFound();
+            //System.out.println("File does not exist!");
         }
     }
 }

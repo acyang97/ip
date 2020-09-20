@@ -14,7 +14,12 @@ public class Event extends Task {
     }
 
     public String formatLine() {
-        String done = (super.isDone) ? "1" : "0";
+        String done;
+        if (super.isDone) {
+            done = "1";
+        } else {
+            done = "0";
+        }
         return "\nE | " + done + " | " + super.text + " | " + this.event;
     }
 

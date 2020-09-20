@@ -9,31 +9,57 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+/**
+ * A TaskManager to manage the list of Tasks in the app.
+ * This is the TaskList class that is required for the project.
+ */
 public class TaskManager {
-    private List<Task> listOfTasks;
+    /**
+     * listOfTasks list that stores the tasks in a list.
+     */
+    private ArrayList<Task> listOfTasks;
+    /**
+     * boolean that indicates whether a user wants to exit the app.
+     */
     private boolean taskManagerSaidBye;
 
+    /**
+     * Constructor for a TaskManager to create a TaskManager object.
+     */
     public TaskManager() {
         this.listOfTasks = new ArrayList<>();
         this.taskManagerSaidBye = false;
     }
 
+    /**
+     * Setter method.
+     */
     public void setTaskManagerSaidBye() {
         this.taskManagerSaidBye = true;
     }
 
+    /**
+     * Getter method.
+     * @return true if taskManagerSaidBye is true.
+     */
     public boolean getTaskManagerSaidBye() {
         return this.taskManagerSaidBye;
     }
 
+    /**
+     * Getter method to get size of list.
+     * @return size of list.
+     */
     public int getSizeOfList() {
         return this.listOfTasks.size();
     }
 
+    /**
+     * Method to print all the tasks in the list.
+     */
     public void printAllTasks() {
         if (this.listOfTasks.size() == 0) {
             Ui.printNoTaskInList();
@@ -45,15 +71,33 @@ public class TaskManager {
         }
     }
 
-    public List<Task> getListOfTasks() {
+    /**
+     * Method to get the list of tasks.
+     * @return the list of tasks.
+     */
+    public ArrayList<Task> getListOfTasks() {
         return this.listOfTasks;
     }
 
+    /**
+     * helper method to split a task when there is date involved
+     * @param commandMethod
+     * @param nextCommand
+     * @return a string array with the splitted task.
+     */
     private String[] splitTask(String commandMethod, String nextCommand) {
         nextCommand = nextCommand.substring(commandMethod.length() + 1);
         return nextCommand.split(" /");
     }
 
+    /**
+     * Method to help add a task
+     * @param commandMethod the first word of the line input.
+     * @param nextCommand the whole line input.
+     * @param storage storage to store the lines in a txt file.
+     * @throws DukeException when an there is an empty description.
+     * @throws IOException when there is an error handling the file.
+     */
     public void addTask(String commandMethod, String nextCommand, Storage storage) throws DukeException, IOException {
         if (commandMethod.length() == nextCommand.length()) {
             throw new DukeException(Ui.printEmptyDescriptionReply(commandMethod));
@@ -75,6 +119,13 @@ public class TaskManager {
         Ui.printShowTaskListSize(this.getSizeOfList());
     }
 
+    /**
+     * Method to mark a task as done
+     * @param indexOfTask index of task to be marked as done
+     * @param storage storage to store the lines in a txt file.
+     * @throws DukeException when index is greater than size of list.
+     * @throws IOException when there is an error handling the file.
+     */
     public void markTaskAsDone(int indexOfTask, Storage storage) throws DukeException, IOException {
         if (indexOfTask > this.getSizeOfList()) {
             throw new DukeException(Ui.printTaskListSizeSmallerThanIndex(indexOfTask));
@@ -88,6 +139,13 @@ public class TaskManager {
         }
     }
 
+    /**
+     *
+     * @param indexOfTask index of task in the list to be deleted.
+     * @param storage storage to store the lines in a txt file.
+     * @throws DukeException when index is greater than size of list.
+     * @throws IOException when there is an error handling the file.
+     */
     public void deleteTask(int indexOfTask, Storage storage) throws DukeException, IOException {
         if (indexOfTask > this.getSizeOfList()) {
             throw new DukeException(Ui.printTaskListSizeSmallerThanIndex(indexOfTask));
@@ -101,6 +159,12 @@ public class TaskManager {
         }
     }
 
+    /**
+     * Helper method to convert a line to a Task object when
+     * we are reading lines from a txt file.
+     * @param line line to be read.
+     * @return a Task Object.
+     */
     private Task convertLineInTaskListToTask(String line) {
         String[] components = line.split("\\|");
         for (int i = 0; i < components.length; i++) {
@@ -116,10 +180,19 @@ public class TaskManager {
         }
     }
 
-    public void addTask(Task task) {
+    /**
+     * Helper method to add tasks to a taskList of the TaskManager
+     * when reading lines from a txt file.
+     * @param task task to be added
+     */
+    private void addTask(Task task) {
         this.listOfTasks.add(task);
     }
 
+    /**
+     * Method to add tasks from a File object to the listOfTasks.
+     * @param file File to be read that contains lines to be parsed into a Task.
+     */
     public void addTasksToTaskManagerFromFile(File file) {
         try {
             Scanner sc = new Scanner(file);
@@ -137,7 +210,12 @@ public class TaskManager {
         }
     }
 
-     public void findTasks(String keyWord, Storage storage) {
+    /**
+     * Method to find Tasks that contains a keyword specified by the use.
+     * @param keyWord specified by the user.
+     * @param storage storage to store the lines in a txt file.
+     */
+    public void findTasks(String keyWord, Storage storage) {
         ArrayList<Task> matchingTasks = new ArrayList<>();
         for (Task task : this.listOfTasks) {
             if (task.getWords().contains(keyWord)) {

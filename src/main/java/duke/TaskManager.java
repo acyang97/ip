@@ -36,9 +36,9 @@ public class TaskManager {
 
     public void printAllTasks() {
         if (this.listOfTasks.size() == 0) {
-            System.out.println("You don't have any tasks in your list");
+            Ui.printNoTaskInList();
         } else {
-            System.out.println("Here are the tasks in your list:");
+            Ui.printTaskListHeader();
             for (int i = 0; i < this.getSizeOfList(); i++) {
                 System.out.println((i + 1) + "." + this.listOfTasks.get(i));
             }
@@ -51,15 +51,16 @@ public class TaskManager {
 
     private String[] splitTask(String commandMethod, String nextCommand) {
         nextCommand = nextCommand.substring(commandMethod.length() + 1);
-        String[] splitTaskIntoTextAndDate = nextCommand.split(" /");
-        return splitTaskIntoTextAndDate;
+        return nextCommand.split(" /");
     }
 
     public void addTask(String commandMethod, String nextCommand, Storage storage) throws DukeException, IOException {
         if (commandMethod.length() == nextCommand.length()) {
-            throw new DukeException("OOPS!!! The description of a " + commandMethod + " cannot be empty.");
+            //throw new DukeException("OOPS!!! The description of a " + commandMethod + " cannot be empty.");
+            throw new DukeException(Ui.printEmptyDescriptionReply(commandMethod));
         }
-        System.out.println("Got it. I've added this task:");
+        //System.out.println("Got it. I've added this task:");
+        Ui.printAddTaskStartingReply();
         Task taskToBeAdded;
         if (commandMethod.equals("todo")) {
             taskToBeAdded = new Todo(nextCommand.substring(commandMethod.length() + 1));
@@ -73,31 +74,37 @@ public class TaskManager {
         System.out.println(taskToBeAdded);
         this.listOfTasks.add(taskToBeAdded);
         storage.addTasks(this);
-        System.out.println(String.format("Now you have %d tasks in the list.", this.getSizeOfList()));
+        //System.out.println(String.format("Now you have %d tasks in the list.", this.getSizeOfList()));
+        Ui.printAddTaskEndReply(this.getSizeOfList());
     }
 
-    public void markTaskAsDone(int indexOfTask) throws DukeException {
+    public void markTaskAsDone(int indexOfTask, Storage storage) throws DukeException, IOException {
         if (indexOfTask > this.getSizeOfList()) {
-            throw new DukeException("Total number of tasks is less than " + indexOfTask);
+            //throw new DukeException("Total number of tasks is less than " + indexOfTask);
+            throw new DukeException(Ui.printTaskListSizeSmallerThanIndex(indexOfTask));
         } else {
             Task taskToBeMarkedAsDone = this.listOfTasks.get(indexOfTask - 1);
             taskToBeMarkedAsDone.setDone();
             this.listOfTasks.set(indexOfTask - 1, taskToBeMarkedAsDone);
-            System.out.println("Nice! I've marked this task as done:");
+            //System.out.println("Nice! I've marked this task as done:");
+            Ui.printMarkedTaskDone();
+            storage.addTasks(this);
             System.out.println(taskToBeMarkedAsDone);
         }
     }
 
     public void deleteTask(int indexOfTask, Storage storage) throws DukeException, IOException {
         if (indexOfTask > this.getSizeOfList()) {
-            throw new DukeException("Total number of tasks is less than " + indexOfTask);
+            //throw new DukeException("Total number of tasks is less than " + indexOfTask);
+            throw new DukeException(Ui.printTaskListSizeSmallerThanIndex(indexOfTask));
         } else {
-            System.out.println("Noted. I've removed this task:");
+            //System.out.println("Noted. I've removed this task:");
+            Ui.printRemovedTask();
             System.out.println(this.listOfTasks.get(indexOfTask - 1));
             this.listOfTasks.remove(indexOfTask - 1);
             storage.emptyFile();
             storage.addTasks(this);
-            System.out.println(String.format("Now you have %d tasks in the list.", this.getSizeOfList()));
+            Ui.printShowTaskListSize(this.getSizeOfList());
         }
     }
 
@@ -106,7 +113,7 @@ public class TaskManager {
         for (int i = 0; i < components.length; i++) {
             components[i] = components[i].trim();
         }
-        boolean isDone = components[1].equals("1") ? true : false;
+        boolean isDone = components[1].equals("1");
         if (components[0].equals("T")) {
             return new Todo(components[2], isDone);
         } else if (components[0].equals("D")) {
@@ -131,9 +138,11 @@ public class TaskManager {
             }
             sc.close();
         } catch (FileNotFoundException e) {
-            System.out.println("File does not exist");
+            //System.out.println("File does not exist");
+            Ui.printFileNotFound();
         } catch (NoSuchElementException e) {
-            System.out.println("There are no tasks in your list");
+            Ui.printNoTaskInList();
         }
     }
 }
+

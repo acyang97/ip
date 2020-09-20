@@ -2,13 +2,29 @@ package duke;
 
 import duke.command.*;
 
+/**
+ * The LineParser class represents a parser that helps to parse a line.
+ * It's main function is to help to return a Command object given a line input.
+ */
 public class LineParser {
+    /**
+     * lineInput String that is the line input of the user.
+     */
     private String lineInput;
 
+    /**
+     * Creates a LineParser object.
+     * @param lineInput String denoting the line input of the user.
+     */
     public LineParser(String lineInput) {
         this.lineInput = lineInput;
     }
 
+    /**
+     * Method that returns a Command object depending on the type of Command.
+     * @return a Command Object depending on type of Command.
+     * @throws DukeException when the Command is an invalid Command.
+     */
     public Command getTypeOfCommand() throws DukeException {
         Command command;
         String commandMethod = lineInput.split(" ")[0];
@@ -35,6 +51,11 @@ public class LineParser {
         return command;
     }
 
+    /**
+     * A private helper method to check if it is a command to add a Task.
+     * @param command line to be parsed.
+     * @return true if it is a type of command to add a Task.
+     */
     private boolean checkAddCommand(String command) {
         return command.equals("todo") || command.equals("event") || command.equals("deadline");
     }

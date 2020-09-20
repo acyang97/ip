@@ -5,7 +5,14 @@ import duke.command.Command;
 import java.io.File;
 import java.util.Scanner;
 
+/**
+ * A Duke class that contains the main method to run the program.
+ */
 public class Duke {
+    /**
+     * Main method to run the Duke program.
+     * @param args the inputs of the user.
+     */
     public static void main(String[] args) {
         String filePath = "taskList.txt";
         File file = new File(filePath);

@@ -138,7 +138,6 @@ public class TaskManager {
             }
             sc.close();
         } catch (FileNotFoundException e) {
-            //System.out.println("File does not exist");
             Ui.printFileNotFound();
         } catch (NoSuchElementException e) {
             Ui.printNoTaskInList();

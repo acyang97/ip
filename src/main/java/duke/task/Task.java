@@ -1,5 +1,7 @@
 package duke.task;
 
+import java.util.ArrayList;
+
 public class Task {
     protected String text;
     protected boolean isDone;
@@ -14,11 +16,20 @@ public class Task {
         this.isDone = isDone;
     }
 
+    public ArrayList<String> getWords() {
+        ArrayList<String> wordList = new ArrayList<>();
+        String[] wordArray = this.text.split(" ");
+        for (int i = 0; i < wordArray.length; i++) {
+            wordList.add(wordArray[i]);
+        }
+        return wordList;
+    }
+
     public void setDone() {
         this.isDone = true;
     }
 
-    protected String getText() {
+    public String getText() {
         return this.text;
     }
 

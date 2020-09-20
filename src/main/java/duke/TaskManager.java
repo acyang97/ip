@@ -56,10 +56,8 @@ public class TaskManager {
 
     public void addTask(String commandMethod, String nextCommand, Storage storage) throws DukeException, IOException {
         if (commandMethod.length() == nextCommand.length()) {
-            //throw new DukeException("OOPS!!! The description of a " + commandMethod + " cannot be empty.");
             throw new DukeException(Ui.printEmptyDescriptionReply(commandMethod));
         }
-        //System.out.println("Got it. I've added this task:");
         Ui.printAddTaskStartingReply();
         Task taskToBeAdded;
         if (commandMethod.equals("todo")) {
@@ -74,19 +72,16 @@ public class TaskManager {
         System.out.println(taskToBeAdded);
         this.listOfTasks.add(taskToBeAdded);
         storage.addTasks(this);
-        //System.out.println(String.format("Now you have %d tasks in the list.", this.getSizeOfList()));
         Ui.printAddTaskEndReply(this.getSizeOfList());
     }
 
     public void markTaskAsDone(int indexOfTask, Storage storage) throws DukeException, IOException {
         if (indexOfTask > this.getSizeOfList()) {
-            //throw new DukeException("Total number of tasks is less than " + indexOfTask);
             throw new DukeException(Ui.printTaskListSizeSmallerThanIndex(indexOfTask));
         } else {
             Task taskToBeMarkedAsDone = this.listOfTasks.get(indexOfTask - 1);
             taskToBeMarkedAsDone.setDone();
             this.listOfTasks.set(indexOfTask - 1, taskToBeMarkedAsDone);
-            //System.out.println("Nice! I've marked this task as done:");
             Ui.printMarkedTaskDone();
             storage.addTasks(this);
             System.out.println(taskToBeMarkedAsDone);
@@ -95,10 +90,8 @@ public class TaskManager {
 
     public void deleteTask(int indexOfTask, Storage storage) throws DukeException, IOException {
         if (indexOfTask > this.getSizeOfList()) {
-            //throw new DukeException("Total number of tasks is less than " + indexOfTask);
             throw new DukeException(Ui.printTaskListSizeSmallerThanIndex(indexOfTask));
         } else {
-            //System.out.println("Noted. I've removed this task:");
             Ui.printRemovedTask();
             System.out.println(this.listOfTasks.get(indexOfTask - 1));
             this.listOfTasks.remove(indexOfTask - 1);
@@ -138,11 +131,27 @@ public class TaskManager {
             }
             sc.close();
         } catch (FileNotFoundException e) {
-            //System.out.println("File does not exist");
             Ui.printFileNotFound();
         } catch (NoSuchElementException e) {
             Ui.printNoTaskInList();
         }
     }
+
+     public void findTasks(String keyWord, Storage storage) {
+        ArrayList<Task> matchingTasks = new ArrayList<>();
+        for (Task task : this.listOfTasks) {
+            if (task.getWords().contains(keyWord)) {
+                matchingTasks.add(task);
+            }
+        }
+        if (matchingTasks.size() == 0) {
+            Ui.printNoMatchingTasks();
+        } else {
+            Ui.printShowMatchingTasksHeader();
+            for (int i = 0; i < matchingTasks.size(); i++) {
+                System.out.println((i + 1) + "." + matchingTasks.get(i));
+            }
+        }
+     }
 }
 

@@ -1,11 +1,6 @@
 package duke;
 
-import duke.command.Command;
-import duke.command.AddTaskCommand;
-import duke.command.ByeCommand;
-import duke.command.DeleteCommand;
-import duke.command.DoneCommand;
-import duke.command.ListCommand;
+import duke.command.*;
 
 public class LineParser {
     private String lineInput;
@@ -29,6 +24,9 @@ public class LineParser {
             String indexOfTaskToDeleted = lineInput.split(" ")[1];
             int indexInInteger = Integer.parseInt(indexOfTaskToDeleted);
             command = new DeleteCommand(this.lineInput, indexInInteger);
+        } else if (commandMethod.equals("find")) {
+            String keyWord = lineInput.split(" ")[1];
+            command = new FindCommand(this.lineInput, keyWord);
         } else if (checkAddCommand(commandMethod)) {
             command = new AddTaskCommand(this.lineInput, commandMethod);
         } else {

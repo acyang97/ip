@@ -57,4 +57,12 @@ public class Ui {
     public static void printMarkedTaskDone() {
         System.out.println("Nice! I've marked this task as done:");
     }
+
+    public static void printNoMatchingTasks() {
+        System.out.println("There are no matching tasks!");
+    }
+
+    public static void printShowMatchingTasksHeader() {
+        System.out.println("Here are the matching tasks in your list:");
+    }
 }

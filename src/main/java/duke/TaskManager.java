@@ -72,7 +72,7 @@ public class TaskManager {
         System.out.println(taskToBeAdded);
         this.listOfTasks.add(taskToBeAdded);
         storage.addTasks(this);
-        Ui.printAddTaskEndReply(this.getSizeOfList());
+        Ui.printShowTaskListSize(this.getSizeOfList());
     }
 
     public void markTaskAsDone(int indexOfTask, Storage storage) throws DukeException, IOException {

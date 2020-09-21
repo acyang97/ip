@@ -1,4 +1,4 @@
-# Duke project template
+# Duke
 
 **Duke** is a desktop app for managing tasks, optimized for use via a
 **Command Line Interface (CLI)**

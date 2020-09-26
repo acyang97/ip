@@ -5,6 +5,7 @@ import duke.command.*;
 /**
  * The LineParser class represents a parser that helps to parse a line.
  * It's main function is to help to return a Command object given a line input.
+ * This is the Parser class as required for the project.
  */
 public class LineParser {
     /**

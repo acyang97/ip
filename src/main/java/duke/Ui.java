@@ -14,7 +14,7 @@ public class Ui {
      * Prints greeting message that displays whenever user starts the app.
      */
     public void printGreeting() {
-        System.out.println("Hello! I'm duke.Duke");
+        System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
         System.out.println();
     }

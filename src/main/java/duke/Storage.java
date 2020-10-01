@@ -13,9 +13,6 @@ import java.io.FileWriter;
  * A Storage object to deal with saving the tasks into a file.
  */
 public class Storage {
-    /**
-     * The file path of the desired file to add the list of tasks.
-     */
     private String filePath;
 
     /**

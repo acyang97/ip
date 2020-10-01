@@ -33,7 +33,9 @@ Format: ```todo t/TASK```
 
 Examples:
 * ```todo t/play football with friends```
+(to type in ```todo play football with friends```)
 * ```todo t/take a nap```
+(to type in ```todo take a nap```)
 
 ### Adding a Deadline: ```deadline```
 

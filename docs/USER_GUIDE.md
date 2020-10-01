@@ -43,7 +43,9 @@ Format: ```deadline t/TASK / b/BY d/DATE```
 
 Examples:
 * ```deadline t/complete MA4270 homework / b/by d/23 September 11pm```
+    *To type in: ```deadline complete MA4270 homework /by 23 September 11pm```
 * ```deadline t/complete MA4270 project / b/by d/30 October 12pm```
+    *To type in: ```deadline complete MA4270 project /by 30 October 12pm```
 
 ### Adding a Event: ```event```
 
@@ -53,7 +55,9 @@ Format: ```event t/TASK / a/AT d/DATE```
 
 Examples:
 * ```event t/Zoukout / a/at d/31 December 2021```
+    *To type in ```event Zoukout /at 31 December 2021```
 * ```event t/John birthday party / a/at d/Sunday 6pm```
+    *To type in ```event John Birthday /at Sunday 6pm```
 
 ### Listing task list: ```list```
 
@@ -85,8 +89,8 @@ Format: ```delete INDEX```
 *The index **must be a positive integer** 1, 2, 3, ...
 
 Examples:
-*```done 2``` deletes the 2nd task in the task list.
-*```done 10``` deletes the 10th task in the task list.
+*```delete 2``` deletes the 2nd task in the task list.
+*```delete 10``` deletes the 10th task in the task list.
 
 ### Finding a task: ```find```
 
@@ -106,7 +110,7 @@ Examples:
 
 Exits the program.
 
-FormatL ```bye```
+Format: ```bye```
 
 ### Saving the data
 
